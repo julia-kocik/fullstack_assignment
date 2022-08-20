@@ -1,0 +1,16 @@
+.container {
+    height: 90vh;
+    margin: 40px 60px;
+    border-radius: 20px;
+    display: flex;
+    .left {
+        flex: 0 0 50%;
+        border-radius: 20px;
+        border: 1px solid gray;
+    }
+    .right {
+        flex: 0 0 50%;    
+        border-radius: 20px;
+        border: 1px solid gray;
+    }
+}
