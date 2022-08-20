@@ -9,6 +9,7 @@ const app = express();
 
 //middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }))
 app.use('/api/events', require('./routes/events'));
 
 const PORT = process.env.PORT || 5000;
