@@ -22,4 +22,8 @@ const EventSchema = new mongoose.Schema({
         type: Date,
         required: [true, 'Please provide a date'],
     },
-})
+});
+
+const Event = mongoose.model("Event", EventSchema);
+
+module.exports = Event;
