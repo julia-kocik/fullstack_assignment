@@ -49,7 +49,7 @@ const Events = () => {
                 <p>{item.email}</p>
             </div>
             <div className='events__event__item'>                
-                <p>{item?.date || "Date"}</p>
+                <p>{item.date}</p>
             </div>
         </div>
     )) 
