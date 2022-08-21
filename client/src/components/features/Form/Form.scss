@@ -1,2 +1,44 @@
-.container {
+@import '../../../styles/settings.scss';
+
+.form__container {
+    background-color: $color-white;
+    height: 100%;
+    border-radius: 6px 20px 20px 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .form {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        .form__input {
+          margin: 20px 20px;
+          border: 1px solid $color-blue;
+          border-radius: 5px;
+          padding: 10px;
+          resize: none;
+        }
+        label {
+            font-size: 16px;
+            margin: 10px 20px;
+        }
+        .form__submit__btn {
+          padding: 15px;
+          font-size: 18px;
+          border-radius: 16px;
+          background-color: $color-blue;
+          border: none;
+          width: 210px;
+          color: $color-white;
+          margin: 20px;
+          cursor: pointer;
+          align-self: center;
+        }
+        .summaryCheckoutBtn:focus {
+          outline: none;;
+        }
+        .summaryCheckoutBtn:hover {
+          opacity: 0.75;
+        }
+      }
 }

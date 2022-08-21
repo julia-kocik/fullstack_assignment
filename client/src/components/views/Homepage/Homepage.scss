@@ -9,10 +9,11 @@
         flex: 0 0 50%;
         border-radius: 20px 6px 6px 20px;
         background: $color-blue-gradient;
+        box-shadow: 2px 2px 12px 3px $color-blue;
     }
     .container__right {
         flex: 0 0 50%;    
         border-radius: 6px 20px 20px 6px;
-        border: 1px solid $color-blue;
+        box-shadow: 2px 2px 12px 3px $color-blue;
     }
 }
