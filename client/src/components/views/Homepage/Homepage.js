@@ -6,10 +6,10 @@ import Form from '../../features/Form/Form';
 const Homepage = () => {
   return (
     <div className='container'>
-        <div className='left'>
+        <div className='container__left'>
             <Events/>
         </div>
-        <div className='right'>
+        <div className='container__right'>
             <Form />
         </div>
     </div>

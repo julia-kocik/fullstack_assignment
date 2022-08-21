@@ -1,16 +1,18 @@
+@import '../../../styles/settings.scss';
+
 .container {
     height: 90vh;
     margin: 40px 60px;
     border-radius: 20px;
     display: flex;
-    .left {
+    .container__left {
         flex: 0 0 50%;
-        border-radius: 20px;
-        border: 1px solid gray;
+        border-radius: 20px 6px 6px 20px;
+        background: $color-blue-gradient;
     }
-    .right {
+    .container__right {
         flex: 0 0 50%;    
-        border-radius: 20px;
-        border: 1px solid gray;
+        border-radius: 6px 20px 20px 6px;
+        border: 1px solid $color-blue;
     }
 }
