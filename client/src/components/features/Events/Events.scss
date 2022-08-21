@@ -1,2 +1,46 @@
-.container {
+@import '../../../styles/settings.scss';
+
+.message__container {
+    height: 100%;
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+}
+
+.events__container {
+    flex: 0 0 68%;
+    padding-left: 40px;
+    .events__section__title {
+        color: $color-white;
+        font-size: 36px;
+        padding: 12px 0 18px 0;
+        text-shadow: 2px 2px 3px rgba(46, 46, 46, 0.2);
+    }
+    .events__section__subtitle {
+        color: $color-white;
+        font-size: 32px;
+        padding-top: 12px;
+        text-shadow: 2px 2px 3px rgba(46, 46, 46, 0.2);
+    }
+    .events__event__container {
+        display: flex;
+        color: rgb(104, 103, 103);
+        justify-content: space-around;
+        margin-right: 36px;
+        max-width: 100%;
+        border-bottom: 1px solid $color-white;
+        .events__event__item {
+            flex: 0 0 25%;
+            font-size: 16px;
+            color: $color-white;
+            display: flex;
+            justify-content: flex-start;
+            p {
+                padding-left: 8px;
+            }
+        }
+    }
 }
