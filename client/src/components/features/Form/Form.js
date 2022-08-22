@@ -18,7 +18,6 @@ const Form = ({setShouldFetchEvents}) => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('')
   const [passValidation, setPassValidation] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const handleChange = (e) => {
     setNewEvent({ ...newEvent, [e.target.name]: e.target.value });
   };
@@ -63,7 +62,7 @@ const Form = ({setShouldFetchEvents}) => {
   
   const submitForm = async (e) => {
     e.preventDefault();
-      if(passValidation && !submitted) {
+      if(passValidation && !loading) {
         try {
           setLoading('Loading...')
           await axios.post(`${API_URL}/events`, newEvent);
@@ -79,7 +78,6 @@ const Form = ({setShouldFetchEvents}) => {
             email: '',
             date: '',
           })
-          setSubmitted(true)
           setShouldFetchEvents(true);
         } catch (err) {
           setLoading('')
@@ -89,7 +87,6 @@ const Form = ({setShouldFetchEvents}) => {
           }, 3000);
         }
         setPassValidation(false);
-        setSubmitted(false)
       } 
     }
   return (
