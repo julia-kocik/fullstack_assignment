@@ -24,12 +24,12 @@ const Events = () => {
   }, [])
   
   if(loading) {
-    return <div className='message__container'>
+    return <div className='loading__container'>
         <span className='info__message'>Loading...</span>
     </div>
   }
   if (error) {
-    return <div className='message__container'>
+    return <div className='loading__container'>
         <span className="error__message">{error}</span>
     </div>
   } 

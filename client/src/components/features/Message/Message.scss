@@ -7,6 +7,9 @@
     margin: 40px;
     background-color: $color-blue;
     color: $color-blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     span {
         color: $color-white;
         font-size: 18px;

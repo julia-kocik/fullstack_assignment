@@ -13,34 +13,54 @@ const Form = () => {
       date: null,
     }
   );
-  // const [passValidation, setPassValidation] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('')
+  const [passValidation, setPassValidation] = useState(false);
   const handleChange = (e) => {
     setNewEvent({ ...newEvent, [e.target.name]: e.target.value });
   };
-  // const validateFormFields = () => {
-  //   const {firstName, lastName, email, date} = newEvent;
-  //   if(firstName && lastName && email && date) {
-  //     console.log(typeof date)
-  //     setPassValidation(true);
-  //   } else {
-  //     setPassValidation(false);
-  //     if(!firstName) {
-  //       alert('Please provide first name');
-  //     } else if(!lastName) {
-  //       alert('Please provide last name');
-  //       return;
-  //     }  else if(!email) {
-  //       alert('Please provide email');
-  //       return;
-  //     } else if(!date) {
-  //       alert('Please provide date');
-  //     }
-  //   }
-  // }
+  const validateFormFields = () => {
+    const {firstName, lastName, email, date} = newEvent;
+    const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const correctEmail = email.match(emailPattern);
+    if(firstName && lastName && email && date) {
+      setPassValidation(true);
+    } else {
+      setPassValidation(false);
+      if(!firstName) {
+        setError('Please provide firstname')
+          setTimeout(() => {
+            setError('')
+          }, 3000);
+      } else if(!lastName)  {
+          setError('Please provide last name')
+          setTimeout(() => {
+            setError('')
+          }, 3000);
+          return;
+      }  else if(!email) {
+          setError('Please provide email')
+          setTimeout(() => {
+            setError('')
+          }, 3000);
+        return;
+      } else if(!correctEmail) {
+        setError('Please provide valid email')
+        setTimeout(() => {
+          setError('')
+        }, 3000);
+      } else if(!date) {
+          setError('Please provide date');
+          setTimeout(() => {
+            setError('')
+          }, 3000);
+        }
+      } 
+  }
   const submitForm = async (e) => {
     e.preventDefault();
-    // validateFormFields()
-      // if(passValidation) {
+    validateFormFields()
+      if(passValidation) {
         try {
           await axios.post(`${API_URL}/events`, newEvent);
           setNewEvent({
@@ -49,16 +69,25 @@ const Form = () => {
             email: '',
             date: null,
           })
-        } catch (error) {
-          console.log(error)
-          console.log(newEvent)
+          setSuccess('Event successfully saved');
+          setTimeout(() => {
+            setSuccess('')
+          }, 3000);
+        } catch (err) {
+          setError(err.response.data.message || 'Network error')
+          setTimeout(() => {
+            setError('')
+          }, 3000);
         }
-        // setPassValidation(false);
-      // }
-  }
+        setPassValidation(false);
+      }
+    }
   return (
     <div className='form__container'>
-          <Message/>
+          <div className='error__container'>
+            {error && <Message error={error}/>}
+            {success && <Message success={success}/>}
+          </div>
           <form className='form' onSubmit={submitForm}>
             <label>Name</label>
             <input className='form__input' type="text" name="firstName" onChange={handleChange}></input>
@@ -70,9 +99,8 @@ const Form = () => {
             <input className='form__input' type="date" name="date" onChange={handleChange}></input>
             <button className='form__submit__btn' type="submit">Save Event</button>
           </form>
-
     </div>
   )
 }
 
-export default Form
+export default Form;

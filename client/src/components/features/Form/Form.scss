@@ -8,6 +8,10 @@
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+    .error__container {
+      height: 120px;
+      width: 80%;
+    }
     .form {
         display: flex;
         flex-direction: column;
