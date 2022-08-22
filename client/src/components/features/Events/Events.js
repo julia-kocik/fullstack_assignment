@@ -20,7 +20,7 @@ const Events = () => {
           console.log(error)
         }
       }
-      fetchEvents()
+      fetchEvents();
   }, [])
   
   if(loading) {

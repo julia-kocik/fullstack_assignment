@@ -1,0 +1,14 @@
+@import '../../../styles/settings.scss';
+
+.message__container {
+    height: 50px;
+    width: 80%;
+    border-radius: 12px;
+    margin: 40px;
+    background-color: $color-blue;
+    color: $color-blue;
+    span {
+        color: $color-white;
+        font-size: 18px;
+    }
+}

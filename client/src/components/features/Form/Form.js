@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import './Form.scss'; 
 import { API_URL } from '../../../config';
 import axios from 'axios';
+import Message from '../Message/Message';
 
 const Form = () => {
   const [newEvent, setNewEvent] = useState(
@@ -57,6 +58,7 @@ const Form = () => {
   }
   return (
     <div className='form__container'>
+          <Message/>
           <form className='form' onSubmit={submitForm}>
             <label>Name</label>
             <input className='form__input' type="text" name="firstName" onChange={handleChange}></input>
