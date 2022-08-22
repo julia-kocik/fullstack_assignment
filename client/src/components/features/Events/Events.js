@@ -3,10 +3,11 @@ import './Events.scss';
 import axios from 'axios';
 import { API_URL } from '../../../config';
 
-const Events = ({error, loading, events}) => {
+const Events = ({error, loading, events, setShouldDelEvents}) => {
     const deleteEvents = async () => {  
         try {
           await axios.delete(`${API_URL}/events`);
+          setShouldDelEvents(true)
         } catch (error) {
           console.log(error)
         }
