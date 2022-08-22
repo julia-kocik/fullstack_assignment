@@ -4,6 +4,7 @@ import { API_URL } from '../../../config';
 import axios from 'axios';
 import Message from '../Message/Message';
 
+
 const Form = () => {
   const [newEvent, setNewEvent] = useState(
     {
@@ -13,13 +14,15 @@ const Form = () => {
       date: null,
     }
   );
-  const {firstName, lastName, email, date} = newEvent;
+  const [loading, setLoading] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('')
   const [passValidation, setPassValidation] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const handleChange = (e) => {
     setNewEvent({ ...newEvent, [e.target.name]: e.target.value });
   };
+  const {firstName, lastName, email, date} = newEvent;
   const validateFormFields = () => {
     const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     const correctEmail = email.match(emailPattern);
@@ -57,35 +60,41 @@ const Form = () => {
         }
       } 
   }
+  
   const submitForm = async (e) => {
     e.preventDefault();
-    validateFormFields()
-      if(passValidation) {
+      if(passValidation && !submitted) {
         try {
+          setLoading('Loading...')
           await axios.post(`${API_URL}/events`, newEvent);
+          setLoading('');
+          setSuccess('Event successfully saved');
+          setTimeout(() => {
+            setSuccess('')
+          }, 3000);
+          // setFetchEvents(true);
           setNewEvent({
             firstName: '',
             lastName: '',
             email: '',
             date: '',
           })
-          setSuccess('Event successfully saved');
-          setTimeout(() => {
-            setSuccess('')
-          }, 3000);
-          // setFetchEvents(true);
+          setSubmitted(true)
         } catch (err) {
+          setLoading('')
           setError(err.response.data.message || 'Network error')
           setTimeout(() => {
             setError('')
           }, 3000);
         }
         setPassValidation(false);
-      }
+        setSubmitted(false)
+      } 
     }
   return (
     <div className='form__container'>
           <div className='error__container'>
+            {loading && <Message loading={loading}/>}
             {error && <Message error={error}/>}
             {success && <Message success={success}/>}
           </div>
@@ -98,7 +107,7 @@ const Form = () => {
             <input className='form__input' type="email" value={email} name="email" onChange={handleChange}></input>
             <label>Date</label>
             <input className='form__input' type="date" value={date} name="date" onChange={handleChange}></input>
-            <button className='form__submit__btn' type="submit">Save Event</button>
+            <button className='form__submit__btn' type="submit" onClick={validateFormFields}>Save Event</button>
           </form>
     </div>
   )

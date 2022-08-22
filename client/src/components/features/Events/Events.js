@@ -29,7 +29,7 @@ const Events = ({error, loading, events}) => {
                 <p>{item.email}</p>
             </div>
             <div className='events__event__item'>                
-                <p>{item.date}</p>
+                <p>{item.date.substring(0,10)}</p>
             </div>
         </div>
     )) 
