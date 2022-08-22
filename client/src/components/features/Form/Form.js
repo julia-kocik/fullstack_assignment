@@ -5,13 +5,13 @@ import axios from 'axios';
 import Message from '../Message/Message';
 
 
-const Form = () => {
+const Form = ({setShouldFetchEvents}) => {
   const [newEvent, setNewEvent] = useState(
     {
       firstName: '',
       lastName: '',
       email: '',
-      date: null,
+      date: '',
     }
   );
   const [loading, setLoading] = useState('');
@@ -80,6 +80,7 @@ const Form = () => {
             date: '',
           })
           setSubmitted(true)
+          setShouldFetchEvents(true);
         } catch (err) {
           setLoading('')
           setError(err.response.data.message || 'Network error')

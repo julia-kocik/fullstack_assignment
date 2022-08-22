@@ -9,9 +9,9 @@ const Homepage = () => {
   const [events, setEvents] = useState([]); 
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
-  // const [shouldFetchEvents, setShouldFetchEvents] = useState(true);
+  const [shouldFetchEvents, setShouldFetchEvents] = useState(true);
   useEffect(() => {
-    // if(shouldFetchEvents) {
+    if(shouldFetchEvents) {
     const fetchEvents = async () => {  
         try {
           const {data} = await axios.get(`${API_URL}/events`);
@@ -25,9 +25,9 @@ const Homepage = () => {
         }
       }
       fetchEvents();
-      // setShouldFetchEvents(true);
-    // }
-  }, [])
+      setShouldFetchEvents(false);
+    }
+  }, [shouldFetchEvents, setShouldFetchEvents])
 
   return (
     <div className='container'>
@@ -35,7 +35,7 @@ const Homepage = () => {
             <Events events={events} loading={loading} error={error} />
         </div>
         <div className='container__right'>
-            <Form />
+            <Form setShouldFetchEvents={setShouldFetchEvents}/>
         </div>
     </div>
   )
