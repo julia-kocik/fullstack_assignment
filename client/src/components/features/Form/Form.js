@@ -18,6 +18,7 @@ const Form = ({setShouldFetchEvents}) => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('')
   const [passValidation, setPassValidation] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const handleChange = (e) => {
     setNewEvent({ ...newEvent, [e.target.name]: e.target.value });
   };
@@ -30,45 +31,47 @@ const Form = ({setShouldFetchEvents}) => {
     } else {
       setPassValidation(false);
       if(!firstName) {
-        alert('Please provide firstname')
-          // setTimeout(() => {
-          //   alert('')
-          // }, 3000);
+        setError('Please provide firstname')
+          setTimeout(() => {
+            setError('')
+          }, 3000);
       } else if(!lastName)  {
-          alert('Please provide last name')
-          // setTimeout(() => {
-          //   alert('')
-          // }, 3000);
+          setError('Please provide last name')
+          setTimeout(() => {
+            setError('')
+          }, 3000);
+          return;
       }  else if(!email) {
-          alert('Please provide email')
-          // setTimeout(() => {
-          //   alert('')
-          // }, 3000);
+          setError('Please provide email')
+          setTimeout(() => {
+            setError('')
+          }, 3000);
+        return;
       } else if(!correctEmail) {
-        alert('Please provide valid email')
-        // setTimeout(() => {
-        //   alert('')
-        // }, 3000);
+        setError('Please provide valid email')
+        setTimeout(() => {
+          setError('')
+        }, 3000);
       } else if(!date) {
-          alert('Please provide date');
-          // setTimeout(() => {
-          //   alert('')
-          // }, 3000);
+          setError('Please provide date');
+          setTimeout(() => {
+            setError('')
+          }, 3000);
         }
       } 
   }
   
   const submitForm = async (e) => {
     e.preventDefault();
-      if(passValidation && !loading) {
+      if(passValidation && !submitted) {
         try {
           setLoading('Loading...')
           await axios.post(`${API_URL}/events`, newEvent);
           setLoading('');
-          alert('Event successfully saved');
-          // setTimeout(() => {
-          //   setSuccess('')
-          // }, 3000);
+          setSuccess('Event successfully saved');
+          setTimeout(() => {
+            setSuccess('')
+          }, 3000);
           // setFetchEvents(true);
           setNewEvent({
             firstName: '',
@@ -76,15 +79,17 @@ const Form = ({setShouldFetchEvents}) => {
             email: '',
             date: '',
           })
+          setSubmitted(true)
           setShouldFetchEvents(true);
         } catch (err) {
           setLoading('')
-          alert(err.response.data.message || 'Network error')
-          // setTimeout(() => {
-          //   alert('')
-          // }, 3000);
+          setError(err.response.data.message || 'Network error')
+          setTimeout(() => {
+            setError('')
+          }, 3000);
         }
         setPassValidation(false);
+        setSubmitted(false)
       } 
     }
   return (
