@@ -19,6 +19,9 @@
         font-size: 36px;
         padding: 12px 0 18px 0;
         text-shadow: 2px 2px 3px rgba(46, 46, 46, 0.2);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
     .events__section__subtitle {
         color: $color-white;

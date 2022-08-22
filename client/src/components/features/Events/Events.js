@@ -1,8 +1,18 @@
 import React from 'react'
 import './Events.scss'; 
+import axios from 'axios';
+import { API_URL } from '../../../config';
 
-
-const Events = ({error, loading, events}) => {  
+const Events = ({error, loading, events}) => {
+    const deleteEvents = async () => {  
+        try {
+          await axios.delete(`${API_URL}/events`);
+        } catch (error) {
+          console.log(error)
+        }
+      }
+    
+  
   if(loading) {
     return <div className='loading__container'>
         <span className='info__message'>Loading...</span>
@@ -15,7 +25,10 @@ const Events = ({error, loading, events}) => {
   } 
   return (
     <div className='events__container'>
-    <h2 className='events__section__title'>Events</h2> 
+    <div className='events__section__title'>
+        <h4>Events</h4>
+        <span onClick={deleteEvents}>Remove</span>
+    </div> 
     {events && events.length  
     ? events.map(item => (
         <div key={item._id} className='events__event__container'>
