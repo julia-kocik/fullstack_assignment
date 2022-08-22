@@ -33,6 +33,7 @@ exports.postEvent = async (req, res, next) => {
         await newEvent.save();
         res.status(200).json({ message: 'OK' });
       } catch(err) {
+        console.log(err)
         let errorMessage;
         if(err.errors?.firstName) {
           errorMessage = 'You have provided incorrect type for a first name. Expected: String';
@@ -43,7 +44,6 @@ exports.postEvent = async (req, res, next) => {
         } else if(err.errors?.date) {
           errorMessage = 'You have provided incorrect type for a date. Expected: Date';
         }
-        if(err.code === 11000) errorMessage='Duplicated email'
         res.status(500).json({ message: errorMessage });
       }
 }

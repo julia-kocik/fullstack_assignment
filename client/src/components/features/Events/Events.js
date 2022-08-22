@@ -1,28 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import './Events.scss'; 
-import { API_URL } from '../../../config';
-import axios from 'axios';
 
-const Events = () => {
-  const [events, setEvents] = useState([]); 
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const fetchEvents = async () => {  
-        try {
-          const {data} = await axios.get(`${API_URL}/events`);
-          setLoading(false);
-          setEvents(data.data)
-          console.log(data.data)
-        } catch (error) {
-          setLoading(false);
-          setError(error.message)
-          console.log(error)
-        }
-      }
-      fetchEvents();
-  }, [])
-  
+
+const Events = ({error, loading, events}) => {  
   if(loading) {
     return <div className='loading__container'>
         <span className='info__message'>Loading...</span>

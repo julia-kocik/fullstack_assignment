@@ -13,6 +13,7 @@ const Form = () => {
       date: null,
     }
   );
+  const {firstName, lastName, email, date} = newEvent;
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('')
   const [passValidation, setPassValidation] = useState(false);
@@ -20,7 +21,6 @@ const Form = () => {
     setNewEvent({ ...newEvent, [e.target.name]: e.target.value });
   };
   const validateFormFields = () => {
-    const {firstName, lastName, email, date} = newEvent;
     const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     const correctEmail = email.match(emailPattern);
     if(firstName && lastName && email && date) {
@@ -67,12 +67,13 @@ const Form = () => {
             firstName: '',
             lastName: '',
             email: '',
-            date: null,
+            date: '',
           })
           setSuccess('Event successfully saved');
           setTimeout(() => {
             setSuccess('')
           }, 3000);
+          // setFetchEvents(true);
         } catch (err) {
           setError(err.response.data.message || 'Network error')
           setTimeout(() => {
@@ -90,13 +91,13 @@ const Form = () => {
           </div>
           <form className='form' onSubmit={submitForm}>
             <label>Name</label>
-            <input className='form__input' type="text" name="firstName" onChange={handleChange}></input>
+            <input className='form__input' type="text" value={firstName} name="firstName" onChange={handleChange}></input>
             <label>Surname</label>
-            <input className='form__input' type="text" name="lastName" onChange={handleChange}></input>
+            <input className='form__input' type="text" value={lastName} name="lastName" onChange={handleChange}></input>
             <label>Email</label>
-            <input className='form__input' type="email" name="email" onChange={handleChange}></input>
+            <input className='form__input' type="email" value={email} name="email" onChange={handleChange}></input>
             <label>Date</label>
-            <input className='form__input' type="date" name="date" onChange={handleChange}></input>
+            <input className='form__input' type="date" value={date} name="date" onChange={handleChange}></input>
             <button className='form__submit__btn' type="submit">Save Event</button>
           </form>
     </div>
