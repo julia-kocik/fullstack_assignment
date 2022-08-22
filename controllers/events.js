@@ -7,8 +7,19 @@ exports.getEvents = async (req, res, next) => {
       }
       catch(err) {
         res.status(500).json({ message: err });
-      }}
+      }
+  }
 
+exports.deleteEvents = async (req, res, next) => {
+    try {
+      const events = await Event.deleteMany();
+        res.json({message: 'OK', data: events});
+      }
+      catch(err) {
+        console.log(err)
+        res.status(500).json({ message: err });
+      }
+  }
 exports.postEvent = async (req, res, next) => {
     try {
         const { firstName, lastName, email, date } = req.body;
@@ -29,8 +40,7 @@ exports.postEvent = async (req, res, next) => {
         if(errorMessage) {
           res.status(500).json({ message: `Please provide a/an ${errorMessage}` });
         }
-        const newEvent = new Event({ firstName, lastName, email, date });
-        await newEvent.save();
+        await Event.create({ firstName, lastName, email, date });
         res.status(200).json({ message: 'OK' });
       } catch(err) {
         console.log(err)
