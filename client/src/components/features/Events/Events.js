@@ -28,7 +28,7 @@ const Events = ({error, loading, events, setShouldDelEvents}) => {
     <div className='events__container'>
     <div className='events__section__title'>
         <h4>Events</h4>
-        <span onClick={deleteEvents}>Remove</span>
+        <button className='form__submit__btn' onClick={deleteEvents}>Clear All</button>
     </div> 
     {events && events.length  
     ? events.map(item => (
