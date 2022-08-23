@@ -4,7 +4,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "test": "jest"
   },
   "repository": "git@github.com:julia-kocik/fullstack_assignment.git",
   "author": "julia-kocik <74269572+julia-kocik@users.noreply.github.com>",
@@ -15,5 +16,8 @@
     "express": "^4.18.1",
     "mongoose": "^6.5.2",
     "nodemon": "^2.0.19"
+  },
+  "devDependencies": {
+    "jest": "^28.1.3"
   }
 }
