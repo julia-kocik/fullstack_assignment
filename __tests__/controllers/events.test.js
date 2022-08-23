@@ -102,7 +102,7 @@ const requestWithMissingDate = {
         firstName: 'firstName',
         lastName: 'lastName', 
         email: 'julia@gmail.com',
-        date: 0
+        date: ''
     }
 }
 
@@ -111,6 +111,23 @@ it('should send a status code 500 and message: Please provide a date', async () 
     expect(response.status).toHaveBeenCalledWith(500);
     expect(response.json).toHaveBeenCalledWith({
         "message": "Please provide date"
+    });
+})
+
+const requestWithInvalidDate = {
+    body: {
+        firstName: 'firstName',
+        lastName: 'lastName', 
+        email: 'julia@gmail.com',
+        date: '123'
+    }
+}
+
+it('should send a status code 500 and message: Please provide a VALID date', async () => {
+    await postEvent(requestWithInvalidDate, response);
+    expect(response.status).toHaveBeenCalledWith(500);
+    expect(response.json).toHaveBeenCalledWith({
+        "message": "Please provide valid date"
     });
 })
 

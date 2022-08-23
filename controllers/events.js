@@ -30,7 +30,9 @@ exports.postEvent = async (req, res, next) => {
         const { firstName, lastName, email, date } = req.body;
         const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         const correctEmail = email.match(emailPattern);
-        if(firstName && lastName && email && correctEmail && date) {
+        const pattern = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
+        const correctDate = date.match(pattern);
+        if(firstName && lastName && email && correctEmail && date && correctDate) {
           await Event.create({ firstName, lastName, email, date });
           res.status(200);
           res.json({ message: 'OK' });
@@ -46,6 +48,8 @@ exports.postEvent = async (req, res, next) => {
             errorMessage = 'Please provide valid email'
           } else if(!date) {
             errorMessage = 'Please provide date'
+          } else if(!correctDate) {
+            errorMessage = 'Please provide valid date'
           }
           res.status(500);
           res.json({ message: errorMessage})
