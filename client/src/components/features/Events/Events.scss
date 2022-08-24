@@ -59,5 +59,11 @@
                 padding-left: 8px;
             }
         }
+        .events__event__item__email {
+            flex: 0 0 38%;
+        }
+        .events__event__item__date {
+            flex: 0 0 12%;
+        }
     }
 }

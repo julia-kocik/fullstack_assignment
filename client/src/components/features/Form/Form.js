@@ -97,14 +97,14 @@ const Form = ({setShouldFetchEvents}) => {
             {success && <Message success={success}/>}
           </div>
           <form className='form' onSubmit={submitForm}>
-            <label>Name</label>
-            <input className='form__input' type="text" value={firstName} name="firstName" onChange={handleChange}></input>
-            <label>Surname</label>
-            <input className='form__input' type="text" value={lastName} name="lastName" onChange={handleChange}></input>
-            <label>Email</label>
-            <input className='form__input' type="email" value={email} name="email" onChange={handleChange}></input>
-            <label>Date</label>
-            <input className='form__input' type="date" value={date} name="date" onChange={handleChange}></input>
+            <label htmlFor='firstName'>Name</label>
+            <input className='form__input' id='firstName' type="text" value={firstName} name="firstName" onChange={handleChange}></input>
+            <label htmlFor='lastName'>Surname</label>
+            <input className='form__input' id='lastName' type="text" value={lastName} name="lastName" onChange={handleChange}></input>
+            <label htmlFor='email'>Email</label>
+            <input className='form__input' id='email' type="email" value={email} name="email" onChange={handleChange}></input>
+            <label htmlFor='date'>Date</label>
+            <input className='form__input' id='date' type="date" value={date} name="date" onChange={handleChange}></input>
             <button className='form__submit__btn' type="submit" onClick={validateFormFields}>Save Event</button>
           </form>
     </div>

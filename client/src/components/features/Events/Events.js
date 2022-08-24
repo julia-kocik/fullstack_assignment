@@ -39,10 +39,10 @@ const Events = ({error, loading, events, setShouldDelEvents}) => {
             <div className='events__event__item'>
                 <p>{item.lastName}</p>
             </div>
-            <div className='events__event__item'>                
+            <div className='events__event__item events__event__item__email'>                
                 <p>{item.email}</p>
             </div>
-            <div className='events__event__item'>                
+            <div className='events__event__item events__event__item__date'>                
                 <p>{item.date.substring(0,10)}</p>
             </div>
         </div>
