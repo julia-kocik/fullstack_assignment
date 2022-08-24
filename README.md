@@ -31,6 +31,7 @@ backend start:
 frontend start:
 
 `cd client`
+`yarn build`
 `npx cypress open`
 
 ### Features and stack
