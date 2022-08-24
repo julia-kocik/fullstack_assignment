@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
+    "build": "cd client && yarn install && yarn build",
     "test": "jest"
   },
   "repository": "git@github.com:julia-kocik/fullstack_assignment.git",
