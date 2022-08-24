@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react';
 import './Homepage.scss';
 import Events from '../../features/Events/Events';
 import Form from '../../features/Form/Form';

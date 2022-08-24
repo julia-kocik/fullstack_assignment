@@ -18,10 +18,13 @@ const Form = ({setShouldFetchEvents}) => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('')
   const [passValidation, setPassValidation] = useState(false);
+
   const handleChange = (e) => {
     setNewEvent({ ...newEvent, [e.target.name]: e.target.value });
   };
+
   const {firstName, lastName, email, date} = newEvent;
+  
   const validateFormFields = () => {
     const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     const correctEmail = email.match(emailPattern);
@@ -71,7 +74,6 @@ const Form = ({setShouldFetchEvents}) => {
           setTimeout(() => {
             setSuccess('')
           }, 3000);
-          // setFetchEvents(true);
           setNewEvent({
             firstName: '',
             lastName: '',

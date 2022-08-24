@@ -1,7 +1,4 @@
 const { postEvent } = require("../../controllers/events");
-const Event = require('../../models/Event');
-
-
 
 jest.mock('../../models/Event');
 
@@ -18,7 +15,6 @@ const requestOK = {
         date: '1994-05-23'
     }
 }
-
 
 it('should send a status code 200 and correct message when valid data provided', async () => {
     await postEvent(requestOK, response);
@@ -129,5 +125,4 @@ it('should send a status code 500 and message: Please provide a VALID date', asy
     expect(response.json).toHaveBeenCalledWith({
         "message": "Please provide valid date"
     });
-})
-
+});

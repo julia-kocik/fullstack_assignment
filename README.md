@@ -22,6 +22,17 @@ frontend start:
 `yarn install`
 `yarn start`
 
+#### To run tests:
+
+backend start:
+
+`yarn jest`
+
+frontend start:
+
+`cd client`
+`npx cypress open`
+
 ### Features and stack
 
 - @reactJS

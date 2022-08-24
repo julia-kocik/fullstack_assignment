@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
 
 const NODE_ENV = process.env.NODE_ENV;
-let dbUri = '';
 
-if(NODE_ENV === 'production') dbUri = process.env.MONGO_URI;
-// else dbUri = 'mongodb://localhost:27017/fullstack_assignment';
-else dbUri = process.env.MONGO_URI
+//should be in .gitignore 
+const dbUri = process.env.MONGO_URI
 
 
 const connectDB = async () => {
